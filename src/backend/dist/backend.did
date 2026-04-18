@@ -1,0 +1,83 @@
+type UserRole__1 = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserRole = 
+ variant {
+   admin;
+   student;
+ };
+type UserProfile = 
+ record {
+   createdAt: Timestamp;
+   email: text;
+   name: text;
+   "principal": UserId;
+   role: UserRole;
+ };
+type UserId = principal;
+type Timestamp = int;
+type NoticeStats = 
+ record {
+   perCategory: vec CategoryStat;
+   perDay: vec DayStat;
+ };
+type NoticeInput = 
+ record {
+   category: NoticeCategory;
+   date: text;
+   description: text;
+   fileLink: opt text;
+   title: text;
+ };
+type NoticeId = nat;
+type NoticeCategory = 
+ variant {
+   Alert;
+   Announcement;
+   Assignment;
+   Event;
+ };
+type Notice = 
+ record {
+   authorId: UserId;
+   category: NoticeCategory;
+   createdAt: Timestamp;
+   date: text;
+   description: text;
+   fileLink: opt text;
+   id: NoticeId;
+   title: text;
+ };
+type DayStat = 
+ record {
+   count: nat;
+   date: text;
+ };
+type CategoryStat = 
+ record {
+   category: NoticeCategory;
+   count: nat;
+ };
+service : {
+  _initializeAccessControl: () -> ();
+  assignCallerUserRole: (user: principal, role: UserRole__1) -> ();
+  createNotice: (input: NoticeInput) -> (Notice);
+  deleteNotice: (id: NoticeId) -> (bool);
+  getAllNotices: () -> (vec Notice) query;
+  getCallerUserProfile: () -> (opt UserProfile) query;
+  getCallerUserRole: () -> (UserRole__1) query;
+  getNoticeStats: () -> (NoticeStats) query;
+  getNoticesByCategory: (category: NoticeCategory) -> (vec Notice) query;
+  getUserProfile: (userId: UserId) -> (opt UserProfile) query;
+  isAdmin: () -> (bool) query;
+  isCallerAdmin: () -> (bool) query;
+  isStudent: () -> (bool) query;
+  registerUserProfile: (name: text, email: text, role: UserRole) ->
+   (UserProfile);
+  saveCallerUserProfile: (profile: UserProfile) -> ();
+  searchNotices: (term: text) -> (vec Notice) query;
+  updateNotice: (id: NoticeId, input: NoticeInput) -> (opt Notice);
+}

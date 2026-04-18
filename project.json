@@ -1,0 +1,24 @@
+{
+  "overview": "EduCampus is a Smart Notice Board web app with Admin and Student roles. Admins can post, edit, and delete notices with file attachments; students can browse, search, and view notices. A live dashboard shows notice analytics with pie and line charts. Features a sidebar layout, dark/light theme toggle, category tags, and smooth animations.",
+  "features": [
+    "Admin/Student role-based access",
+    "Create, edit, delete notices with categories and file links",
+    "Real-time notice search and category filtering",
+    "Pie chart (notices by category) + Line chart (notices over time)",
+    "Persistent sidebar navigation with dark/light theme toggle",
+    "Animated notice cards with category tags and detail view",
+    "Responsive design with mobile sidebar",
+    "Protected routes with session persistence"
+  ],
+  "category": "productivity",
+  "tags": [
+    "notice-board",
+    "education",
+    "admin-dashboard",
+    "charts",
+    "role-based-access",
+    "dark-mode",
+    "sidebar"
+  ],
+  "last_updated": "2026-04-18T09:35:06.796Z"
+}
